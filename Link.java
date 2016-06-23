@@ -9,6 +9,12 @@ public class Link<T>
 		this.nextLink = nextLink;
 	}
 
+	public Link(T data)
+	{
+		this.data = data;
+		this.nextLink = null;
+	}
+
 	//Setters
 	////////////////////////////////////
 
