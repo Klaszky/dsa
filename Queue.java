@@ -1,59 +1,53 @@
 public class Queue<T>
 {
-	public static void main(String[] args)
-	{
-		Queue<Integer> s = new Queue();
-		s.push(42);
-		System.out.println(s);
-		s.push(53);
-		System.out.println(s);
-		s.push(5454);
-		System.out.println(s);
-		s.push(342);
-		System.out.println(s);
-		s.push(3542);
-		System.out.println(s);
-		s.push(2435);
-		System.out.println(s);
-		s.pop();
-		System.out.println(s);
-		s.pop();
-		System.out.println(s);
-		s.pop();
-		System.out.println(s);
-		s.pop();
-		System.out.println(s);
-		s.pop();
-		System.out.println(s);
-		s.pop();
-		System.out.println(s);
-
-
-
-
-	}
 	private LinkedList<T> linkedList;
+	private Link<T> tail;
 
+	//Constructor
+	///////////////////////////////////////////
 	public Queue()
 	{
 		this.linkedList = new LinkedList();
 	}
 
+	//O(1)
 	public void push(T data)
 	{
-		this.linkedList.addToEnd(data);
+		if(this.linkedList.getFront() == null)
+		{
+			this.linkedList.addToEnd(data);
+			this.tail = this.linkedList.findTail();
+			return;
+		}
+
+		this.linkedList.addToEnd(data, tail);
+		this.tail = tail.getNextLink();
 	}
 
+	//O(1)
 	public T pop()
 	{
 		return this.linkedList.popFront();
 	}
 
+	//O(1)
 	public T peek()
 	{
 		return this.linkedList.peekFront();
 	}
 
+	//O(1)
+	public boolean isEmpty()
+	{
+		if(this.linkedList.getFront() == null)
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+	//O(1)
 	public String toString()
 	{
 		return this.peek() + "";

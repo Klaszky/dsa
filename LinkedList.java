@@ -1,53 +1,42 @@
 public class LinkedList<T>
 {
-	public static void main(String[] args)
-	{
-		LinkedList<Integer> ll = new LinkedList<>();
-
-		ll.addToFront(23);
-		ll.addToFront(55);
-		ll.addToEnd(42);
-		ll.deleteFromFront();
-
-		System.out.println(ll);
-	}
 	private Link<T> front;
+
+	//Constructor
+	///////////////////////////////////////////
 
 	public LinkedList(Link<T> front)
 	{
 		this.front = front;
 	}
 
+	//Empty Constructor
+	///////////////////////////////////////////
+
 	public LinkedList()
 	{
 		this.front = null;
 	}
 
-
-	//Setter
-	///////////////////////////////////
-
-	// public void setFront(Link<T> front)
-	// {
-	// 	this.front = front;
-	// }
-
 	//Getter
-	///////////////////////////////////
+	//////////////////////////////////////////
 
+	//O(1)
 	public Link<T> getFront()
 	{
 		return this.front;
 	}
 
-	//Other methods
-	///////////////////////////////////
+	//Add Methods
+	//////////////////////////////////////////
 
+	//O(1)
 	public void addToFront(T data)
 	{
 		this.front = new Link<T>(data, this.getFront()); 
 	}
 
+	//O(n)
 	public void addToEnd(T data)
 	{
 		if(this.front == null)
@@ -67,11 +56,44 @@ public class LinkedList<T>
 		}
 	}
 
+	//O(1)
+	public void addToEnd(T data, Link<T> tail)
+	{
+		tail.setNextLink(new Link<T>(data, null));
+	}
+
+
+	//Delete Methods
+	//////////////////////////////////////////////
+
+	//O(1)
 	public void deleteFromFront()
 	{
 		this.front = this.getFront().getNextLink();
 	}
 
+	//O(n)
+	public void deleteTarget(T data)
+	{
+		if(this.front.getData().equals(data))
+		{
+			this.front = this.front.getNextLink();
+			return;
+		}
+		for(Link<T> ptr = this.front; ptr != null; ptr = ptr.getNextLink())
+		{
+			if(ptr.getNextLink().getData().equals(data))
+			{
+				ptr.setNextLink(ptr.getNextLink().getNextLink());
+				return;
+			}
+		}
+	}
+
+	//Stack and Queue methods
+	////////////////////////////////////////
+
+	//O(1)
 	public T peekFront()
 	{
 		if(this.front != null)
@@ -80,13 +102,37 @@ public class LinkedList<T>
 			return null;
 	}
 
+	//O(1)
 	public T popFront()
 	{
+		if(this.front == null)
+		{
+			return null;
+		}
+
 		T toReturn = this.front.getData();
 		this.deleteFromFront();
 		return toReturn;
 	}
 
+	//O(n)
+	public Link<T> findTail()
+	{
+		for(Link<T> ptr = this.front; ptr != null; ptr = ptr.getNextLink())
+		{
+			if(ptr.getNextLink() == null)
+			{
+				return ptr;
+			}
+		}
+
+		return null;
+	}
+
+	//Others
+	///////////////////////////////////////
+
+	//O(n)
 	public String toString()
 	{
 		String toReturn = "";
@@ -97,4 +143,15 @@ public class LinkedList<T>
 
 		return toReturn;
 	}
+
+	// O(n)
+	// public String revToString(Link<T> front)
+	// {
+	// 	if(front == null)
+	// 	{
+	// 		return "";
+	// 	}
+
+	// 	return revToString(front.getNextLink()) + " " + front.getData();
+	// }
 }

@@ -3,6 +3,9 @@ public class Link<T>
 	private T data;
 	private Link<T> nextLink;
 
+	//Constructors
+	///////////////////////////////////////////
+
 	public Link(T data, Link<T> nextLink)
 	{
 		this.data = data;
@@ -18,11 +21,13 @@ public class Link<T>
 	//Setters
 	////////////////////////////////////
 
+	//O(1)
 	public void setData(T data)
 	{
 		this.data = data;
 	}
 
+	//O(1)
 	public void setNextLink(Link<T> nextLink)
 	{
 		this.nextLink = nextLink;
@@ -31,11 +36,13 @@ public class Link<T>
 	//Getters
 	////////////////////////////////////
 
+	//O(1)
 	public T getData()
 	{
 		return this.data;
 	}
 
+	//O(1)
 	public Link<T> getNextLink()
 	{
 		return this.nextLink;
