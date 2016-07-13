@@ -22,27 +22,58 @@ public class BST
 		return root;
 	}
 
-	public static boolean search(int data, BST_Node rt)
+	public static boolean search(int data, BST_Node root)
 	{
-		if(rt.getData() == data)
+		if(root.getData() == data)
 		{
 			return true;
 		}
 		else
 		{
-			if(data > rt.getData() && rt.getRight() != null)
+			if(data > root.getData() && root.getRight() != null)
 			{
-				return search(data, rt.getRight());
+				return search(data, root.getRight());
 			}
-			else if(data < rt.getData() && rt.getLeft() != null)
+			else if(data < root.getData() && root.getLeft() != null)
 			{
-				return search(data, rt.getLeft());
+				return search(data, root.getLeft());
 			}
 		}
 
 		return false;
 
 	}
+
+	public static BST_Node getNode(int data, BST_Node root)
+	{
+		if(root == null)
+		{
+			return null;
+		}
+
+		if(root.getData() == data)
+		{
+			return root;
+		}
+		else
+		{
+			if(data > root.getData() && root.getRight() != null)
+			{
+				return getNode(data, root.getRight());
+			}
+			else if(data < root.getData() && root.getLeft() != null)
+			{
+				return getNode(data, root.getLeft());
+			}
+			else
+			{
+				return root;
+			}
+		}
+
+	}
+
+
 	public static insert(int data, BST_Node root)
 	{
 		
