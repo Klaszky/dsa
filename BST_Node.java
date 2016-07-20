@@ -38,4 +38,76 @@ public class BST_Node
 	{
 		return this.data;
 	}
+
+	public static BST_Node getNode(BST_Node root, int target)
+	{
+		if(root == null)
+		{
+			return null;
+		}
+
+		if(root.getData() == target)
+		{
+			return root;
+		}
+		else if(root.getData() > target && root.getLeft() != null)
+		{
+			return getNode(root.getLeft(), target);
+		}
+		else if(root.getData() < target && root.getRight() != null)
+		{
+			return getNode(root.getRight(), target);
+		}
+		else
+		{
+			return root;
+		}
+	}
+
+	public static String nodeString(BST_Node node)
+	{
+		String toReturn = "";
+		if(node == null)
+		{
+			return toReturn + "null";
+		}
+		
+		if(node.getLeft() == null && node.getRight() == null)
+		{
+			toReturn = toReturn + "[";
+			toReturn = toReturn + "null" + " " + node.getData() + " " + "null";
+			toReturn = toReturn + "]";
+			return toReturn;
+		}
+		else if(node.getLeft() == null)
+		{
+			toReturn = toReturn + "[";
+			toReturn = "[null" + " " + node.getData() + " ";
+			toReturn = toReturn + "[" + nodeString(node.getRight().getLeft()) + " " + node.getRight().getData() + " ";
+			toReturn = toReturn + nodeString(node.getRight().getRight()) + "]";
+			toReturn = toReturn + "]";
+			return toReturn;
+		}
+		else if(node.getRight() == null)
+		{
+			toReturn = toReturn + "[";
+			toReturn = toReturn + "[" + nodeString(node.getLeft().getLeft()) + " " + node.getLeft().getData() + " ";
+			toReturn = toReturn + nodeString(node.getLeft().getRight()) + "]";
+			toReturn = toReturn + " " + node.getData() + " ";
+			toReturn = toReturn + "null]";
+			toReturn = toReturn + "]";
+			return toReturn;
+		}
+		else
+		{
+			toReturn = toReturn + "[";
+			toReturn = toReturn + "[" + nodeString(node.getLeft().getLeft()) + " " + node.getLeft().data + " ";
+			toReturn = toReturn + nodeString(node.getLeft().getRight()) + "]";
+			toReturn = toReturn + " " + node.getData() + " ";
+			toReturn = toReturn + "[" + nodeString(node.getRight().getLeft()) + " " + node.getRight().data + " ";
+			toReturn = toReturn + nodeString(node.getRight().getRight()) + "]";
+			toReturn = toReturn + "]";
+			return toReturn;
+		}
+	}
 }

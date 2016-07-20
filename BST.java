@@ -1,5 +1,25 @@
 public class BST
 {
+	public static void main(String[] args)
+	{
+		BST tree = new BST();
+		tree.insert(3546);
+		tree.insert(23);
+		tree.insert(656);
+		tree.insert(123);
+		tree.insert(52);
+		tree.insert(25);
+		tree.insert(3646);
+		tree.insert(12);
+		tree.insert(699);
+		tree.insert(42);
+		tree.insert(646);
+		tree.insert(97);
+		tree.insert(999);
+		tree.insert(1);
+		System.out.println(search(1, tree.root));
+		System.out.println(tree.search(2563546));
+	}
 	private BST_Node root;
 
 	public BST()
@@ -44,44 +64,80 @@ public class BST
 
 	}
 
-	public static BST_Node getNode(int data, BST_Node root)
+	public boolean search(int data)
 	{
-		if(root == null)
+		if(BST_Node.getNode(this.root, data).getData() != data)
 		{
-			return null;
+			return false;
 		}
 
-		if(root.getData() == data)
+		return true;
+	}
+
+	// public static BST_Node getNode(int data, BST_Node root)
+	// {
+	// 	if(root == null)
+	// 	{
+	// 		return null;
+	// 	}
+
+	// 	if(root.getData() == data)
+	// 	{
+	// 		return root;
+	// 	}
+	// 	else
+	// 	{
+	// 		if(data > root.getData() && root.getRight() != null)
+	// 		{
+	// 			return getNode(data, root.getRight());
+	// 		}
+	// 		else if(data < root.getData() && root.getLeft() != null)
+	// 		{
+	// 			return getNode(data, root.getLeft());
+	// 		}
+	// 		else
+	// 		{
+	// 			return root;
+	// 		}
+	// 	}
+
+	// }
+
+
+	public void insert(int data)
+	{
+		if(this.root == null)
 		{
-			return root;
+			this.root = new BST_Node(data);
+		}
+		BST_Node found = BST_Node.getNode(this.root, data);
+		if(found.getData() == data)
+		{
+			return;
 		}
 		else
 		{
-			if(data > root.getData() && root.getRight() != null)
+			if(found.getData() > data)
 			{
-				return getNode(data, root.getRight());
-			}
-			else if(data < root.getData() && root.getLeft() != null)
-			{
-				return getNode(data, root.getLeft());
+				found.setLeft(new BST_Node(data));
 			}
 			else
 			{
-				return root;
+				found.setRight(new BST_Node(data));
 			}
 		}
-
 	}
 
-
-	public static insert(int data, BST_Node root)
+	public String toString()
 	{
-		
+		if (this.root == null)
+		{
+			return "(null)";
+		}
+		else 
+		{
+			return "(" + BST_Node.nodeString(this.root) + ")";
+		}
 	}
 
-	public static void main(String[] args)
-	{
-		BST root = new BST(200);
-		System.out.println(search(200, root.root));
-	}
 }
