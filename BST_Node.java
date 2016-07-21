@@ -110,4 +110,26 @@ public class BST_Node
 			return toReturn;
 		}
 	}
+
+	public static int getHeight(BST_Node root)
+	{
+		if(root == null)
+		{
+			return 0;
+		}
+
+		return 1 + BST_Node.max(getHeight(root.getLeft()), getHeight(root.getRight()));
+	}
+
+	public static int max(int left, int right)
+	{
+		if(left > right)
+		{
+			return left;
+		}
+
+		return right;
+	}
+
+
 }

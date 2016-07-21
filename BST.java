@@ -19,6 +19,7 @@ public class BST
 		tree.insert(1);
 		System.out.println(search(1, tree.root));
 		System.out.println(tree.search(2563546));
+		int x = gHeight(root);
 	}
 	private BST_Node root;
 
@@ -139,5 +140,11 @@ public class BST
 			return "(" + BST_Node.nodeString(this.root) + ")";
 		}
 	}
+
+	public int gHeight()
+	{
+		return BST_Node.getHeight(this.root);
+	}
+
 
 }
